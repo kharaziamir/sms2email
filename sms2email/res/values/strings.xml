@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Sms2Email!</string>
-    <string name="app_name">Sms2Email</string>
+    <string name="app_name">
+        Sms2Email
+    </string>
+    <string name="main1">
+        Diese Applikation sendet alle empfangenen SMS an folgende
+        Email Empfänger:
+    </string>
+    <string name="main2">
+        Die Emfängerliste können Sie über das Einstellungs-Menü
+        ändern.
+    </string>
+    <string name="no_address_specified">
+        Keine Adresse angegeben!
+    </string>
 </resources>
