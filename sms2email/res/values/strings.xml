@@ -14,4 +14,16 @@
     <string name="no_address_specified">
         Keine Adresse angegeben!
     </string>
+    <string name="email_address">
+        Email Empfänger:
+    </string>
+    <string name="config">
+        Einstellungen
+    </string>
+    <string name="ok">
+        OK
+    </string>
+    <string name="cancel">
+        Abbruch
+    </string>
 </resources>
