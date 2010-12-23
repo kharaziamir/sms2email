@@ -19,4 +19,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:text="@string/google_address"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        
+    <EditText
+        android:id="@+id/edit_google_address"
+        android:text="@string/no_address_specified"
+        android:inputType="textEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="@string/google_password"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        
+    <EditText
+        android:id="@+id/edit_google_password"
+        android:text="@string/no_address_specified"
+        android:inputType="textPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </TableLayout>

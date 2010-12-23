@@ -55,13 +55,23 @@ public class Sms2Email extends Activity implements OnClickListener, OnDismissLis
 	 */
 	String m_emailAddress = null;
 	
-    @Override
+	/**
+	 * sender email address
+	 */
+	String m_googleAddress = null;
+	
+	/**
+	 * sender email password
+	 */
+	String m_googlePassword = null;
+	
+	@Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         
         /* initialize configured email address and show main view */
-        m_emailAddress = new String (getEmailAddress());
+        getEmailConfig();
         setContentView(R.layout.main);
         ((TextView)findViewById(R.id.email_address)).setText(m_emailAddress);
     }
@@ -107,6 +117,38 @@ public class Sms2Email extends Activity implements OnClickListener, OnDismissLis
     		case R.id.menu_config: /* configuration menu entry */
    				showDialog(DIALOG_CONFIG);
     			return true;
+    		case R.id.menu_test:   /* test mail */
+    			SendEmailThread sendEmailThread;
+    			Mail m = new Mail(m_googleAddress, m_googlePassword);
+    			String[] toArr = {m_emailAddress};
+    			m.setTo(toArr); 
+    			m.setFrom(m_googleAddress); 
+    			m.setSubject("[Sms2Email] - Testmail"); 
+    			m.setBody(
+    					"Dies ist eine von Sms2Email generierte Testmail\n" +
+    					"Absender : " + m_googleAddress + "\n" +
+    					"Empfänger: " + m_emailAddress  + "\n");
+    			sendEmailThread = new SendEmailThread(m);
+    			sendEmailThread.start();
+    			/*
+    			try
+    			{ 
+    				if(m.send())
+    				{ 
+    					showAlert("Success", "Email was sent successfully."); 
+    		        }
+    				else
+    				{ 
+    					showAlert("Fail", "Email was not sent."); 
+    		        } 
+    			}
+    			catch(Exception e)
+    			{ 
+    				showException(e); 
+    		        //Log.e("MailApp", "Could not send email", e); 
+    			} 
+    			*/
+    			return true;
     		default:
     			return super.onOptionsItemSelected(item);
     	}
@@ -142,9 +184,11 @@ public class Sms2Email extends Activity implements OnClickListener, OnDismissLis
     	{
     		case DialogInterface.BUTTON_POSITIVE:
     			/* set new email address */
-    			m_emailAddress = ((TextView)m_configDialog.findViewById(R.id.edit_email_address)).getText().toString();
+    			m_emailAddress   = ((TextView)m_configDialog.findViewById(R.id.edit_email_address)).getText().toString();
+    			m_googleAddress  = ((TextView)m_configDialog.findViewById(R.id.edit_google_address)).getText().toString();
+    			m_googlePassword = ((TextView)m_configDialog.findViewById(R.id.edit_google_password)).getText().toString();
     			((TextView)findViewById(R.id.email_address)).setText(m_emailAddress);
-    			setEmailAddress(m_emailAddress);
+    			setEmailConfig();
     			break;
     			
     		case DialogInterface.BUTTON_NEGATIVE:
@@ -169,17 +213,17 @@ public class Sms2Email extends Activity implements OnClickListener, OnDismissLis
     }
     
     /**
-     * writes a email address into the email address configuration file
-     * 
-     * @param emailAddress
+     * writes email configuration in configuration file
      */
-    private void setEmailAddress(String emailAddress)
+    private void setEmailConfig()
     {
     	try
     	{
     		FileOutputStream fos = openFileOutput (EMAIL_ADDRESS_CFG, Context.MODE_PRIVATE);
     		DataOutputStream dos = new DataOutputStream(fos);
-    		dos.write((emailAddress + "\n").getBytes());
+    		dos.write((m_emailAddress + "\n").getBytes());
+    		dos.write((m_googleAddress + "\n").getBytes());
+    		dos.write((m_googlePassword + "\n").getBytes());
 			fos.close();
     	}
     	catch (Exception e)
@@ -189,26 +233,26 @@ public class Sms2Email extends Activity implements OnClickListener, OnDismissLis
     }
     
     /**
-     * reads the email address from the email address configuration file
-     * 
-     * @return read email address
+     * reads the email configuration from the configuration file
      */
-    private String getEmailAddress()
+    private void getEmailConfig()
     {
-    	String emailAddress = new String (this.getString(R.string.no_address_specified));
+    	m_emailAddress   = new String (this.getString(R.string.no_address_specified));
+    	m_googleAddress  = new String (this.getString(R.string.no_address_specified));
+    	m_googlePassword = new String (this.getString(R.string.no_address_specified));
     	
     	try
     	{
 			FileInputStream fis = openFileInput(EMAIL_ADDRESS_CFG);
 			DataInputStream dis = new DataInputStream(fis);
-			emailAddress = dis.readLine();
+			m_emailAddress = dis.readLine();
+			m_googleAddress = dis.readLine();
+			m_googlePassword = dis.readLine();
 			fis.close();
     	}
     	catch (Exception e)
     	{
-    		setEmailAddress(emailAddress);
+    		setEmailConfig();
     	}
-    	
-    	return emailAddress;
     }
 }
