@@ -6,12 +6,10 @@
 
 package de.felleisen.android.sms2email;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telephony.gsm.SmsMessage;
 import android.util.Log;
@@ -55,7 +53,7 @@ public class Sms2EmailForwarder extends BroadcastReceiver
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
-		getEmailConfig(context);
+		getConfig(context);
 		Bundle bundle = intent.getExtras();
 		Object messages[] = (Object[])bundle.get("pdus");
 		SmsMessage smsMessage[] = new SmsMessage[messages.length];
@@ -77,20 +75,21 @@ public class Sms2EmailForwarder extends BroadcastReceiver
 		}
 	}
 	
-    private void getEmailConfig(Context context)
+    /**
+     * reads configuration
+     */
+    private void getConfig(Context context)
     {
     	try
     	{
-			FileInputStream fis = context.openFileInput(Sms2Email.EMAIL_ADDRESS_CFG);
-			DataInputStream dis = new DataInputStream(fis);
-			m_emailAddress = dis.readLine();
-			m_googleAddress = dis.readLine();
-			m_googlePassword = dis.readLine();
-			fis.close();
+    		SharedPreferences settings = context.getSharedPreferences(Sms2Email.CFG_FILE, 0);
+    		m_emailAddress   = settings.getString("emailAddress",   context.getString(R.string.no_address_specified));
+    		m_googleAddress  = settings.getString("googleAddress",  context.getString(R.string.no_address_specified));
+    		m_googlePassword = settings.getString("googlePassword", context.getString(R.string.no_address_specified));
     	}
     	catch (Exception e)
     	{
-    		Log.e("Sms2Email", "getEmailConfig: " + e.toString());
+    		Log.e("Sms2Email", "Sms2Email.getEmailConfig():" + e.toString());
     	}
     }
 }
