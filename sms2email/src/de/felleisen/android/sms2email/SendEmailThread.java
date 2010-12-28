@@ -9,19 +9,30 @@ package de.felleisen.android.sms2email;
 import android.util.Log;
 
 /**
- * Sends an email.
+ * sends an email as background job
  * 
  * @author juergen
  */
 public class SendEmailThread extends Thread
 {
-    Mail m_mail;
+    private static final String TAG = "Sms2Email - SendEmailThread"; /**< log tag */
 
+    private Mail m_mail; /**< Mail opject to be sent */
+
+    /**
+     * constructor takes the mail object and fills the corresponfding attribute
+     * 
+     * @param   mail  mail object to be sent
+     */
     public SendEmailThread(final Mail mail)
     {
         m_mail = mail;
     }
 
+    /**
+     * sends the mail object
+     * @see java.lang.Thread#run()
+     */
     @Override
     public void run()
     {
@@ -29,16 +40,16 @@ public class SendEmailThread extends Thread
         {
             if (m_mail.send())
             {
-                Log.i("Sms2Email - Mail::send()", "SUCCESS");
+                Log.i(TAG, "Mail.send() SUCCESS");
             }
             else
             {
-                Log.e("Sms2Email - Mail::send()", "FAILED");
+                Log.e(TAG, "Mail.send() FAILED");
             }
         }
         catch (final Exception e)
         {
-            Log.e("Sms2Email - Mail::send()", e.toString());
+            Log.e(TAG, "Mail.send(): " + e.toString());
         }
     }
 }

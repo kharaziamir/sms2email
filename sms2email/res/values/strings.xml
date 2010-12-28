@@ -19,14 +19,29 @@
     <string name="no_address_specified">
         Keine Adresse angegeben!
     </string>
+    <string name="receiver">
+    	Empfänger
+    </string>
+    <string name="sender">
+    	Absender
+    </string>
     <string name="email_address">
-        Email Empfänger:
+        Email Empfänger
+    </string>
+    <string name="email_address_summary">
+    	Email Adresse des Empfängers
     </string>
     <string name="google_address">
-        Googlemail Absender:
+        Googlemail Absender
+    </string>
+    <string name="google_address_summary">
+    	Email Adresse des Googlemail Kontos
     </string>
     <string name="google_password">
-        Googlemail Passwort:
+        Googlemail Passwort
+    </string>
+    <string name="google_password_summary">
+    	Passwort für das Googlemail Konto
     </string>
     <string name="config">
         Einstellungen

@@ -11,6 +11,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+	    <activity
+    		android:name=".Sms2EmailPreferences"
+			android:label="@string/config">
+		</activity>
         <receiver android:name=".Sms2EmailForwarder" android:enabled="true">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
