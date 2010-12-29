@@ -89,6 +89,7 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
                 {
                     Log.e(TAG, "start preferences activity - " + e.toString());
                 }
+                return true;
 
             case R.id.menu_test: /* test mail */
                 SendEmailThread sendEmailThread;
