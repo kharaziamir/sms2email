@@ -6,7 +6,8 @@
         	android:summary="@string/email_address_summary"
         	android:title="@string/email_address"
         	android:dialogTitle="@string/email_address"
-        	android:defaultValue="@string/no_address_specified"/>
+        	android:defaultValue="@string/no_address_specified"
+        	android:inputType="textEmailAddress" />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/sender">	
 		<EditTextPreference
@@ -14,12 +15,14 @@
         	android:summary="@string/google_address_summary"
         	android:title="@string/google_address"
         	android:dialogTitle="@string/google_address"
-        	android:defaultValue="@string/no_address_specified"/>
+        	android:defaultValue="@string/no_address_specified"
+        	android:inputType="textEmailAddress" />
 		<EditTextPreference
         	android:key="googlePassword"
         	android:summary="@string/google_password_summary"
         	android:title="@string/google_password"
         	android:dialogTitle="@string/google_password"
-        	android:defaultValue="@string/no_address_specified"/>
+        	android:defaultValue="@string/no_address_specified"
+        	android:inputType="textPassword" />
 	</PreferenceCategory>
 </PreferenceScreen>
