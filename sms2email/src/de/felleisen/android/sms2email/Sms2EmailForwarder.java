@@ -4,6 +4,22 @@
  * to a email addresses.
  */
 
+/*
+ *  Copyright 2011 Juergen Felleisen
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 package de.felleisen.android.sms2email;
 
 import android.content.BroadcastReceiver;
@@ -28,16 +44,25 @@ public class Sms2EmailForwarder extends BroadcastReceiver
     private String m_googlePassword = null; /**< sender Google email password */
 
     /**
-     * Formats a SMS message into a user friendly string.
+     * sends an email
      * 
-     * @param smsMessage
-     *            array of received SMS messages
-     * @return formatted string
+     * @param   context             context
+     * @param   originatingAddress  originating address
+     * @param   message             message contents
      */
-    private String formatSms(final SmsMessage smsMessage)
+    private void sendEmail(Context context, String originatingAddress, String message)
     {
-        return ("Absender : " + smsMessage.getOriginatingAddress() + "\n" +
-                "Nachricht:\n" + smsMessage.getMessageBody() + "\n");
+        Mail m = new Mail(m_googleAddress, m_googlePassword);
+        String[] toArr = { m_emailAddress };
+        m.setTo(toArr);
+        m.setFrom(m_googleAddress);
+        m.setSubject("[Sms2Email] - SMS from " + originatingAddress);
+        m.setBody("Absender : "  + originatingAddress + "\n" +
+                  "Nachricht:\n" + message + "\n");
+        SendEmailThread sendEmailThread = new SendEmailThread(m);
+        sendEmailThread.start();
+        Toast toast = Toast.makeText(context, "[Sms2Email] - SMS from " + originatingAddress, Toast.LENGTH_LONG);
+        toast.show();
     }
 
     /**
@@ -46,29 +71,34 @@ public class Sms2EmailForwarder extends BroadcastReceiver
      * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
      */
     @Override
-    public void onReceive(final Context context, final Intent intent)
+    public void onReceive(final Context context, Intent intent)
     {
         getConfig(context);
-        final Bundle bundle = intent.getExtras();
-        final Object messages[] = (Object[]) bundle.get("pdus");
-        final SmsMessage smsMessage[] = new SmsMessage[messages.length];
+        String originatingAddress = "";
+        String message = "";
+        Bundle bundle = intent.getExtras();
+        Object messages[] = (Object[]) bundle.get("pdus");
         for (int n = 0; n < messages.length; n++)
         {
-            smsMessage[n] = SmsMessage.createFromPdu((byte[]) messages[n]);
-
-            SendEmailThread sendEmailThread;
-            Mail m = new Mail(m_googleAddress, m_googlePassword);
-            String[] toArr = { m_emailAddress };
-            m.setTo(toArr);
-            m.setFrom(m_googleAddress);
-            m.setSubject("[Sms2Email] - SMS from "
-                    + smsMessage[n].getOriginatingAddress());
-            m.setBody(formatSms(smsMessage[n]));
-            sendEmailThread = new SendEmailThread(m);
-            sendEmailThread.start();
-            final Toast toast = Toast.makeText(context, formatSms(smsMessage[n]), Toast.LENGTH_LONG);
-            toast.show();
+            SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) messages[n]);
+            
+            if (originatingAddress.contentEquals(""))
+            {
+                originatingAddress = smsMessage.getOriginatingAddress();
+                message = smsMessage.getMessageBody();
+            }
+            else if (!originatingAddress.contentEquals(smsMessage.getOriginatingAddress()))
+            {
+                sendEmail(context, originatingAddress, message);
+                originatingAddress = smsMessage.getOriginatingAddress();
+                message = smsMessage.getMessageBody();
+            }
+            else
+            {
+                message += smsMessage.getMessageBody();
+            }
         }
+        sendEmail(context, originatingAddress, message);
     }
 
     /**
