@@ -44,6 +44,7 @@ public final class R {
         public static final int sender=0x7f050006;
         public static final int test=0x7f05000e;
         public static final int testmail_subject=0x7f05000f;
+        public static final int unknown=0x7f050012;
     }
     public static final class xml {
         public static final int preferences=0x7f040000;

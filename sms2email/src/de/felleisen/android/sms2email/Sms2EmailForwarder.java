@@ -23,12 +23,16 @@
 package de.felleisen.android.sms2email;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.telephony.gsm.SmsMessage;
+import android.provider.ContactsContract.PhoneLookup;
+import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -44,6 +48,32 @@ public class Sms2EmailForwarder extends BroadcastReceiver
     private String m_googlePassword = null; /**< sender Google email password */
 
     /**
+     * gets contact name to given phone number
+     * 
+     * @param   context      application context
+     * @param   phoneNumber  phone number to search name for
+     * @return  contact name
+     */
+    private String getContactName(Context context, String phoneNumber)
+    {
+        ContentResolver cr = context.getContentResolver();
+        Uri contacts = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
+        String[] projection = new String[] { PhoneLookup.DISPLAY_NAME };
+        String result;
+        Cursor cursor = cr.query(contacts, projection, null, null, null);
+        if (cursor.moveToFirst()) // entry found
+        {
+            result = cursor.getString(cursor.getColumnIndex(PhoneLookup.DISPLAY_NAME));
+        }
+        else // no entry found
+        {
+            result = context.getString(R.string.unknown);
+        }
+        result += " <" + phoneNumber + ">";
+        return result;
+    }
+    
+    /**
      * sends an email
      * 
      * @param   context             context
@@ -54,14 +84,15 @@ public class Sms2EmailForwarder extends BroadcastReceiver
     {
         Mail m = new Mail(m_googleAddress, m_googlePassword);
         String[] toArr = { m_emailAddress };
+        String sender = getContactName(context, originatingAddress);
         m.setTo(toArr);
         m.setFrom(m_googleAddress);
-        m.setSubject(context.getString(R.string.mail_subject) + " " + originatingAddress);
-        m.setBody(context.getString(R.string.sender) + ": "  + originatingAddress + "\n" +
+        m.setSubject(context.getString(R.string.mail_subject) + " " + sender);
+        m.setBody(context.getString(R.string.sender) + ": "  + sender + "\n" +
                   context.getString(R.string.message) + ":\n" + message + "\n");
         SendEmailThread sendEmailThread = new SendEmailThread(m);
         sendEmailThread.start();
-        Toast toast = Toast.makeText(context, "[Sms2Email] - SMS from " + originatingAddress, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(context, "[Sms2Email] - SMS from " + sender, Toast.LENGTH_LONG);
         toast.show();
     }
 

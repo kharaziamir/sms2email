@@ -25,4 +25,5 @@
     <string name="testmail_subject">[Sms2Email] - Email d`test</string>
     <string name="mail_subject">[Sms2Email] - SMS de</string>
     <string name="message">Message</string>
+    <string name="unknown">inconnu</string>
 </resources>

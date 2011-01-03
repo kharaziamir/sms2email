@@ -2,11 +2,11 @@
 <resources>
     <string name="app_name">Sms2Email</string>
     <string name="main1">
-        Diese Applikation sendet alle empfangenen SMS an folgende
+        Diese Applikation sendet alle empfangenen SMS an folgenden
         Email Empfänger:
     </string>
     <string name="main2">
-        Die Emfängerliste können Sie über das Einstellungs-Menü
+        Den Empfänger können Sie über das Einstellungs-Menü
         ändern.
     </string>
     <string name="main3">
@@ -28,4 +28,5 @@
     <string name="testmail_subject">[Sms2Email] - Testmail</string>
     <string name="mail_subject">[Sms2Email] - SMS von</string>
     <string name="message">Nachricht</string>
+    <string name="unknown">unbekannt</string>
 </resources>
