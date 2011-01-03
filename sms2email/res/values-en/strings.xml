@@ -10,7 +10,7 @@
     </string>
     <string name="main3">
     	Sending of the email works only with a Google Mail account.
-    	This account can abe specified in the preferences menu as
+    	This account can be specified in the preferences menu as
     	well.
     </string>
     <string name="no_address_specified">No email address specified!</string>
@@ -24,8 +24,6 @@
     <string name="google_password_summary">the password for the Google Mail account</string>
     <string name="config">Preferences</string>
     <string name="test">Send Test Mail</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
     <string name="testmail_subject">[Sms2Email] - Test Mail</string>
     <string name="mail_subject">[Sms2Email] - SMS from</string>
     <string name="message">Message</string>

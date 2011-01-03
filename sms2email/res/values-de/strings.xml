@@ -25,8 +25,6 @@
     <string name="google_password_summary">Passwort für das Googlemail Konto</string>
     <string name="config">Einstellungen</string>
     <string name="test">Testmail Senden</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Abbruch</string>
     <string name="testmail_subject">[Sms2Email] - Testmail</string>
     <string name="mail_subject">[Sms2Email] - SMS von</string>
     <string name="message">Nachricht</string>
