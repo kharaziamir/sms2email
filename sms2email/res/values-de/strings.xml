@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sms2Email</string>
-    <string name="main1">
-        Diese Applikation sendet alle empfangenen SMS an folgenden
-        Email Empfänger:
-    </string>
-    <string name="main2">
-        Den Empfänger können Sie über das Einstellungs-Menü
-        ändern.
-    </string>
-    <string name="main3">
-        Das Versenden der Email funktioniert momentan nur über ein
-        Googlemail Konto. Dieses Konto können Sie ebenfalls in den
-        Einstellungen angeben.
-    </string>
+    <string name="main1">Alle SMS werden an folgende Adresse gesendet:</string>
+    <string name="main2">Einstellungen sind über das Menü erreichbar.</string>
     <string name="no_address_specified">Keine Adresse angegeben!</string>
     <string name="receiver">Empfänger</string>
     <string name="sender">Absender</string>
