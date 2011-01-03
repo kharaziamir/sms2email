@@ -56,9 +56,9 @@ public class Sms2EmailForwarder extends BroadcastReceiver
         String[] toArr = { m_emailAddress };
         m.setTo(toArr);
         m.setFrom(m_googleAddress);
-        m.setSubject("[Sms2Email] - SMS from " + originatingAddress);
-        m.setBody("Absender : "  + originatingAddress + "\n" +
-                  "Nachricht:\n" + message + "\n");
+        m.setSubject(context.getString(R.string.mail_subject) + " " + originatingAddress);
+        m.setBody(context.getString(R.string.sender) + ": "  + originatingAddress + "\n" +
+                  context.getString(R.string.message) + ":\n" + message + "\n");
         SendEmailThread sendEmailThread = new SendEmailThread(m);
         sendEmailThread.start();
         Toast toast = Toast.makeText(context, "[Sms2Email] - SMS from " + originatingAddress, Toast.LENGTH_LONG);

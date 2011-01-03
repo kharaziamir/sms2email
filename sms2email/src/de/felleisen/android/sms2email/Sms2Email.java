@@ -4,6 +4,22 @@
  * to a email addresses.
  */
 
+/*
+ *  Copyright 2011 Juergen Felleisen
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 package de.felleisen.android.sms2email;
 
 import android.app.Activity;
@@ -97,10 +113,10 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
                 String[] toArr = { m_emailAddress };
                 m.setTo(toArr);
                 m.setFrom(m_googleAddress);
-                m.setSubject("[Sms2Email] - Testmail");
-                m.setBody("Dies ist eine von Sms2Email generierte Testmail\n"
-                        + "Absender : " + m_googleAddress + "\n"
-                        + "Empfänger: " + m_emailAddress + "\n");
+                m.setSubject(getString(R.string.testmail_subject));
+                m.setBody(getString(R.string.testmail_subject) + "\n" +
+                          getString(R.string.sender) + ": " + m_googleAddress + "\n" +
+                          getString(R.string.receiver) + ": " + m_emailAddress + "\n");
                 sendEmailThread = new SendEmailThread(m);
                 sendEmailThread.start();
                 return true;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sms2Email</string>
+    <string name="main1">
+    	This application sends all received SMS to following
+    	email address:
+    </string>
+    <string name="main2">
+    	The receiver can be changed in the preferences menu.
+    </string>
+    <string name="main3">
+    	Sending of the email works only with a Google Mail account.
+    	This account can abe specified in the preferences menu as
+    	well.
+    </string>
+    <string name="no_address_specified">No email address specified!</string>
+    <string name="receiver">Receiver</string>
+    <string name="sender">Sender</string>
+    <string name="email_address">Email Receiver</string>
+    <string name="email_address_summary">the address of the email receiver</string>
+    <string name="google_address">Google Mail Sender</string>
+    <string name="google_address_summary">the email address of the Google Mail account</string>
+    <string name="google_password">Google Mail Password</string>
+    <string name="google_password_summary">the password for the Google Mail account</string>
+    <string name="config">Preferences</string>
+    <string name="test">Send Test Mail</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="testmail_subject">[Sms2Email] - Test Mail</string>
+    <string name="mail_subject">[Sms2Email] - SMS from</string>
+    <string name="message">Message</string>
+</resources>
