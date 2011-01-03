@@ -14,11 +14,11 @@
     <string name="no_address_specified">Aucun email address n`a spécifié!</string>
     <string name="receiver">Récepteur</string>
     <string name="sender">Expéditeur</string>
-    <string name="email_address">Récepteur d`email</string>
+    <string name="email_address">Email Récepteur</string>
     <string name="email_address_summary">L`adresse du récepteur d`email.</string>
-    <string name="google_address">Expéditeur de Google Mail</string>
+    <string name="google_address">Google Mail Expéditeur</string>
     <string name="google_address_summary">L`email address du compte de Google Mail.</string>
-    <string name="google_password">Mot de passe de Google Mail</string>
+    <string name="google_password">Google Mail Mot de Passe</string>
     <string name="google_password_summary">Le mot de passe pour le compte de Google Mail.</string>
     <string name="config">Préférences</string>
     <string name="test">Envoyez Teste</string>
