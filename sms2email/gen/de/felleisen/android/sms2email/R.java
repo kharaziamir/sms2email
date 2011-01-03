@@ -27,7 +27,6 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f050000;
-        public static final int cancel=0x7f050010;
         public static final int config=0x7f05000d;
         public static final int email_address=0x7f050007;
         public static final int email_address_summary=0x7f050008;
@@ -35,14 +34,16 @@ public final class R {
         public static final int google_address_summary=0x7f05000a;
         public static final int google_password=0x7f05000b;
         public static final int google_password_summary=0x7f05000c;
+        public static final int mail_subject=0x7f050010;
         public static final int main1=0x7f050001;
         public static final int main2=0x7f050002;
         public static final int main3=0x7f050003;
+        public static final int message=0x7f050011;
         public static final int no_address_specified=0x7f050004;
-        public static final int ok=0x7f05000f;
         public static final int receiver=0x7f050005;
         public static final int sender=0x7f050006;
         public static final int test=0x7f05000e;
+        public static final int testmail_subject=0x7f05000f;
     }
     public static final class xml {
         public static final int preferences=0x7f040000;
