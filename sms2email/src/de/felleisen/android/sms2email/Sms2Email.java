@@ -53,12 +53,19 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
      */
     private void updateMainScreen()
     {
-        ((TextView) findViewById(R.id.email_address)).setText(m_emailAddress);
-        ((TextView) findViewById(R.id.forwarding)).setText(
-                getString(R.string.forwarding) + " " +
-                (m_forwardingActive ? getString(R.string.active) : getString(R.string.inactive)));
-        ((TextView) findViewById(R.id.forwarding)).setTextColor(
-                (m_forwardingActive ? 0xff00ff00 : 0xffff0000));
+        try
+        {
+            ((TextView) findViewById(R.id.email_address)).setText(m_emailAddress);
+            ((TextView) findViewById(R.id.forwarding)).setText(
+                    getString(R.string.forwarding) + " " +
+                    (m_forwardingActive ? getString(R.string.active) : getString(R.string.inactive)));
+            ((TextView) findViewById(R.id.forwarding)).setTextColor(
+                    (m_forwardingActive ? 0xff00ff00 : 0xffff0000));
+        }
+        finally
+        {
+            // no nothing, try will fail if main screen is not the topic view
+        }
     }
 
     /**
@@ -164,6 +171,10 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
         {
             m_forwardingActive = sharedPreferences.getBoolean("forwardingActive", true);
         }
+        else if (key.contentEquals("remotePassword"))
+        {
+            
+        }
         else
         {
             Log.e(TAG, "onSharedPreferenceChanged: unknown key " + key);
@@ -178,9 +189,9 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
         try
         {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-            m_emailAddress = preferences.getString("emailAddress", getString(R.string.no_address_specified));
-            m_googleAddress = preferences.getString("googleAddress", getString(R.string.no_address_specified));
-            m_googlePassword = preferences.getString("googlePassword", getString(R.string.no_address_specified));
+            m_emailAddress     = preferences.getString ("emailAddress",     getString(R.string.no_address_specified));
+            m_googleAddress    = preferences.getString ("googleAddress",    getString(R.string.no_address_specified));
+            m_googlePassword   = preferences.getString ("googlePassword",   getString(R.string.no_address_specified));
             m_forwardingActive = preferences.getBoolean("forwardingActive", true);
         }
         catch (Exception e)

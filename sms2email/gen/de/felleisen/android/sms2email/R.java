@@ -48,6 +48,9 @@ public final class R {
         public static final int miscellaneous=0x7f050012;
         public static final int no_address_specified=0x7f050003;
         public static final int receiver=0x7f050004;
+        public static final int remote_control=0x7f050018;
+        public static final int remote_password=0x7f050019;
+        public static final int remote_password_summary=0x7f05001a;
         public static final int sender=0x7f050005;
         public static final int test=0x7f05000d;
         public static final int testmail_subject=0x7f05000e;

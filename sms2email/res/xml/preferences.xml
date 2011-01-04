@@ -32,4 +32,13 @@
             android:summary="@string/active_summary"
             android:defaultValue="true" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/remote_control">
+        <EditTextPreference
+            android:key="remotePassword"
+            android:summary="@string/remote_password_summary"
+            android:title="@string/remote_password"
+            android:dialogTitle="@string/remote_password"
+            android:defaultValue=""
+            android:inputType="textPassword" />
+    </PreferenceCategory>
 </PreferenceScreen>

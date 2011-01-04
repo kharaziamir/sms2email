@@ -24,4 +24,7 @@
     <string name="forwarding">Weiterleitung</string>
     <string name="active">aktiv</string>
     <string name="inactive">inaktiv</string>
+    <string name="remote_control">Fernsteuerung</string>
+    <string name="remote_password">Passwort</string>
+    <string name="remote_password_summary">Passwort für die Fernsteuerung</string>
 </resources>

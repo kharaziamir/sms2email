@@ -24,4 +24,7 @@
     <string name="forwarding">Forwarding</string>
     <string name="active">active</string>
     <string name="inactive">inactive</string>
+    <string name="remote_control">Remote Control</string>
+    <string name="remote_password">Password</string>
+    <string name="remote_password_summary">Remote control password</string>
 </resources>

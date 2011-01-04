@@ -24,4 +24,7 @@
     <string name="forwarding">Transmission</string>
     <string name="active">active</string>
     <string name="inactive">inactive</string>
+    <string name="remote_control">Commande à Distance</string>
+    <string name="remote_password">Mot de Passe</string>
+    <string name="remote_password_summary">Mot de passe pour la command à distance.</string>
 </resources>
