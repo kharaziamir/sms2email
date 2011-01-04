@@ -1,54 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_main"
-    android:orientation="vertical"
-    android:layout_gravity="center_horizontal"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
+    android:scrollbars="none">
 
-    <ImageView
-        android:src="@drawable/sms2email_main"
+    <LinearLayout
+        android:id="@+id/layout_main"
+        android:orientation="vertical"
         android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-    />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
     
-    <TextView  
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" 
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5sp"
-        android:text="@string/main1"
-    />
+        <ImageView
+            android:src="@drawable/sms2email_main"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        />
+        
+        <TextView  
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5sp"
+            android:text="@string/main1"
+        />
+        
+        <TextView  
+            android:id="@+id/email_address"
+            android:text="@string/no_address_specified"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+        />
+        
+        <TextView
+            android:id="@+id/forwarding"  
+            android:text="@string/forwarding"
+            android:textColor="#00ff00"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5sp"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+        />
+        
+        <TextView  
+            android:text="@string/main2"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5sp"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+        />
     
-    <TextView  
-        android:id="@+id/email_address"
-        android:text="@string/no_address_specified"
-        android:textSize="18sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" 
-    />
+    </LinearLayout>
     
-    <TextView
-        android:id="@+id/forwarding"  
-        android:text="@string/forwarding"
-        android:textColor="#00ff00"
-        android:textSize="18sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5sp"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" 
-    />
-    
-    <TextView  
-        android:text="@string/main2"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5sp"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" 
-    />
-    
-</LinearLayout>
+</ScrollView>

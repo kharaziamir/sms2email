@@ -24,6 +24,7 @@ package de.felleisen.android.sms2email;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -46,6 +47,8 @@ import android.widget.TextView;
 public class Sms2Email extends Activity implements OnSharedPreferenceChangeListener
 {
     private static final String TAG = "Sms2Email"; /**< log tag */
+    
+    private static final int DIALOG_HELP = 0;  /**< help dialog ID */
     
     private String  m_emailAddress     = null; /**< receiver email address */
     private String  m_googleAddress    = null; /**< sender Google email address */
@@ -147,16 +150,39 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
                 return true;
                 
             case R.id.menu_help: /* help screen */
-            	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            	LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-            	View layout = inflater.inflate(R.layout.help, (ViewGroup) findViewById(R.id.layout_main));
-            	builder.setView(layout);
-            	builder.create().show();
-            	return true;
+                showDialog(DIALOG_HELP);
+                return true;
                 
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    
+    /**
+     * create dialo handler
+     * @see android.app.Activity#onCreateDialog(int)
+     */
+    @Override
+    protected Dialog onCreateDialog(final int id)
+    {
+        Dialog dialog = null;
+
+        switch (id)
+        {
+            case DIALOG_HELP:
+                /* create and initialize configuration dialog */
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.help, (ViewGroup) findViewById(R.layout.main));
+                builder.setIcon(android.R.drawable.ic_menu_help);
+                builder.setTitle(getText(R.string.help));
+                builder.setView(layout);
+                builder.setPositiveButton(getText(R.string.dismiss), null);
+                dialog = builder.create();
+                break;
+        }
+
+        return dialog;
     }
 
     /**

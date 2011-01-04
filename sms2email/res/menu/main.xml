@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item 
         android:id="@+id/menu_config"
-        android:title="@string/config" />
+        android:title="@string/config"
+        android:icon="@android:drawable/ic_menu_manage" />
     <item 
         android:id="@+id/menu_help"
-        android:title="@string/help" />
+        android:title="@string/help"
+        android:icon="@android:drawable/ic_menu_help" />
     <item
         android:id="@+id/menu_test"
-        android:title="@string/test" />
+        android:title="@string/test"
+        android:icon="@android:drawable/ic_menu_send" />
 </menu>
