@@ -27,4 +27,28 @@
     <string name="remote_control">Commande à Distance</string>
     <string name="remote_password">Mot de Passe</string>
     <string name="remote_password_summary">Mot de passe pour la command à distance.</string>
+
+    <string name="help_remote_head">Commande à Distance</string>
+    <string name="help_remote_body">
+        Sms2Email peut être télécommandé en envoyant des messages
+        de la commande SMS à votre téléphone portable. Pour permettre
+        à télécommande, un télécommande mot de passe doit être placé.
+        Des commandes suivantes peuvent être envoyées. [mot_de_passe]
+        représente le mot de passe à télécommande choisi.
+        Veuillez faire attention ce là est le seulement un espace entre
+        les mots et aucun additionnel l`espace à la fin de la commande.
+    </string>
+    <string name="help_activate_cmd">[mot_de_passe] on</string>
+    <string name="help_activate_description">
+        Transmission de SMS sera activé.
+    </string>
+    <string name="help_deactivate_cmd">[mot_de_passe] off</string>
+    <string name="help_deactivate_description">
+        Transmission de SMS sera deactivé.
+    </string>
+    <string name="help_set_email_cmd">[mot_de_passe] to [email_address]</string>
+    <string name="help_set_email_description">
+        Place un nouvel email address pour le transmission de SMS.
+        Transmission de SMS sera activé.
+    </string>
 </resources>

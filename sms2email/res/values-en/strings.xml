@@ -27,4 +27,27 @@
     <string name="remote_control">Remote Control</string>
     <string name="remote_password">Password</string>
     <string name="remote_password_summary">Remote control password</string>
+
+    <string name="help_remote_head">Fernsteuerung</string>
+    <string name="help_remote_body">
+        Sms2Email can be remote controlled by sending control SMS messages
+        to your mobile phone. To enable remote control, a remote control
+        password must be set. Following commands can be sent. [password]
+        represents the choosen remote control password. Please take care
+        that there is only one space between the words and no additional
+        space at the end of the command.
+    </string>
+    <string name="help_activate_cmd">[password] on</string>
+    <string name="help_activate_description">
+        Activates SMS forwarding.
+    </string>
+    <string name="help_deactivate_cmd">[password] off</string>
+    <string name="help_deactivate_description">
+        Deactivates SMS forwarding.
+    </string>
+    <string name="help_set_email_cmd">[passwort] to [email_address]</string>
+    <string name="help_set_email_description">
+        Sets a new email address for SMS forwarding and activates SMS
+        forwarding.
+    </string>
 </resources>

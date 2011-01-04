@@ -27,4 +27,28 @@
     <string name="remote_control">Fernsteuerung</string>
     <string name="remote_password">Passwort</string>
     <string name="remote_password_summary">Passwort für die Fernsteuerung</string>
+    
+    <string name="help_remote_head">Fernsteuerung</string>
+    <string name="help_remote_body">
+        Sms2Email kann mittles SMS Nachrichten an Ihr Handy ferngesteuert
+        werden. Dazu muss zunächst ein Passwort für die Fernsteuerung
+        festgelegt werden. Folgende Kommandos können gesendet werden.
+        [Passwort] ist der Platzhalter für das gewählte Passwort zur
+        Fernsteuerung. Bitte achten Sie darauf, dass zwischen den Worten
+        jeweils nur ein Leerzeichen steht und keine Leerzeichen an den
+        Befehl angehängt werden dürfen.
+    </string>
+    <string name="help_activate_cmd">[Passwort] on</string>
+    <string name="help_activate_description">
+        Aktiviert das Weiterleiten von SMS Nachrichten.
+    </string>
+    <string name="help_deactivate_cmd">[Passwort] off</string>
+    <string name="help_deactivate_description">
+        Deaktiviert das Weiterleiten von SMS Nachrichten.
+    </string>
+    <string name="help_set_email_cmd">[Passwort] to [Email_Adresse]</string>
+    <string name="help_set_email_description">
+        Stellt eine neue Email Adresse für das Weiterleiten ein und
+        aktiviert das Weiterleiten.
+    </string>
 </resources>
