@@ -18,4 +18,10 @@
     <string name="mail_subject">[Sms2Email] - SMS de</string>
     <string name="message">Message</string>
     <string name="unknown">inconnu</string>
+    <string name="miscellaneous">Autre</string>
+    <string name="active_head">Active</string>
+    <string name="active_summary">Transmission active/inactive</string>
+    <string name="forwarding">Transmission</string>
+    <string name="active">active</string>
+    <string name="inactive">inactive</string>
 </resources>

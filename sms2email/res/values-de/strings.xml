@@ -18,4 +18,10 @@
     <string name="mail_subject">[Sms2Email] - SMS von</string>
     <string name="message">Nachricht</string>
     <string name="unknown">unbekannt</string>
+    <string name="miscellaneous">Sonstiges</string>
+    <string name="active_head">Aktiv</string>
+    <string name="active_summary">Weiterleitung aktiv/inaktiv</string>
+    <string name="forwarding">Weiterleitung</string>
+    <string name="active">aktiv</string>
+    <string name="inactive">inaktiv</string>
 </resources>

@@ -25,4 +25,11 @@
         	android:defaultValue="@string/no_address_specified"
         	android:inputType="textPassword" />
 	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/miscellaneous">
+		<CheckBoxPreference
+			android:key="forwardingActive"
+            android:title="@string/active_head"
+            android:summary="@string/active_summary"
+            android:defaultValue="true" />
+	</PreferenceCategory>
 </PreferenceScreen>

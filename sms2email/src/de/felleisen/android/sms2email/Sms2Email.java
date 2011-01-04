@@ -43,9 +43,23 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
 {
     private static final String TAG = "Sms2Email"; /**< log tag */
     
-    private String m_emailAddress   = null; /**< receiver email address */
-    private String m_googleAddress  = null; /**< sender Google email address */
-    private String m_googlePassword = null; /**< sender Google password */
+    private String  m_emailAddress     = null; /**< receiver email address */
+    private String  m_googleAddress    = null; /**< sender Google email address */
+    private String  m_googlePassword   = null; /**< sender Google password */
+    private Boolean m_forwardingActive = true; /**< forwarding active flag */
+    
+    /**
+     * updates the contents of the main screen
+     */
+    private void updateMainScreen()
+    {
+        ((TextView) findViewById(R.id.email_address)).setText(m_emailAddress);
+        ((TextView) findViewById(R.id.forwarding)).setText(
+                getString(R.string.forwarding) + " " +
+                (m_forwardingActive ? getString(R.string.active) : getString(R.string.inactive)));
+        ((TextView) findViewById(R.id.forwarding)).setTextColor(
+                (m_forwardingActive ? 0xff00ff00 : 0xffff0000));
+    }
 
     /**
      * reads the configuration and shows the start screen
@@ -59,7 +73,7 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
         /* initialize configured email address and show main view */
         getConfig();
         setContentView(R.layout.main);
-        ((TextView) findViewById(R.id.email_address)).setText(m_emailAddress);
+        updateMainScreen();
     }
     
     /**
@@ -71,7 +85,7 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
     {
         super.onResume();
         getConfig();
-        ((TextView) findViewById(R.id.email_address)).setText(m_emailAddress);
+        updateMainScreen();
     }
 
     /**
@@ -146,6 +160,10 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
             m_googlePassword = sharedPreferences.getString("googlePassword",
                     getString(R.string.no_address_specified));
         }
+        else if (key.contentEquals("forwardingActive"))
+        {
+            m_forwardingActive = sharedPreferences.getBoolean("forwardingActive", true);
+        }
         else
         {
             Log.e(TAG, "onSharedPreferenceChanged: unknown key " + key);
@@ -163,6 +181,7 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
             m_emailAddress = preferences.getString("emailAddress", getString(R.string.no_address_specified));
             m_googleAddress = preferences.getString("googleAddress", getString(R.string.no_address_specified));
             m_googlePassword = preferences.getString("googlePassword", getString(R.string.no_address_specified));
+            m_forwardingActive = preferences.getBoolean("forwardingActive", true);
         }
         catch (Exception e)
         {

@@ -43,9 +43,10 @@ import android.widget.Toast;
  */
 public class Sms2EmailForwarder extends BroadcastReceiver
 {
-    private String m_emailAddress   = null; /**< receiver email address */
-    private String m_googleAddress  = null; /**< sender Google email address */
-    private String m_googlePassword = null; /**< sender Google email password */
+    private String  m_emailAddress     = null; /**< receiver email address */
+    private String  m_googleAddress    = null; /**< sender Google email address */
+    private String  m_googlePassword   = null; /**< sender Google email password */
+    private Boolean m_forwardingActive = true; /**< forwarding active flag */
 
     /**
      * gets contact name to given phone number
@@ -82,18 +83,21 @@ public class Sms2EmailForwarder extends BroadcastReceiver
      */
     private void sendEmail(Context context, String originatingAddress, String message)
     {
-        Mail m = new Mail(m_googleAddress, m_googlePassword);
-        String[] toArr = { m_emailAddress };
-        String sender = getContactName(context, originatingAddress);
-        m.setTo(toArr);
-        m.setFrom(m_googleAddress);
-        m.setSubject(context.getString(R.string.mail_subject) + " " + sender);
-        m.setBody(context.getString(R.string.sender) + ": "  + sender + "\n" +
-                  context.getString(R.string.message) + ":\n" + message + "\n");
-        SendEmailThread sendEmailThread = new SendEmailThread(m);
-        sendEmailThread.start();
-        Toast toast = Toast.makeText(context, "[Sms2Email] - SMS from " + sender, Toast.LENGTH_LONG);
-        toast.show();
+        if (m_forwardingActive)
+        {
+            Mail m = new Mail(m_googleAddress, m_googlePassword);
+            String[] toArr = { m_emailAddress };
+            String sender = getContactName(context, originatingAddress);
+            m.setTo(toArr);
+            m.setFrom(m_googleAddress);
+            m.setSubject(context.getString(R.string.mail_subject) + " " + sender);
+            m.setBody(context.getString(R.string.sender) + ": "  + sender + "\n" +
+                    context.getString(R.string.message) + ":\n" + message + "\n");
+            SendEmailThread sendEmailThread = new SendEmailThread(m);
+            sendEmailThread.start();
+            Toast toast = Toast.makeText(context, "[Sms2Email] - SMS from " + sender, Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     /**
@@ -112,7 +116,7 @@ public class Sms2EmailForwarder extends BroadcastReceiver
         for (int n = 0; n < messages.length; n++)
         {
             SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) messages[n]);
-            
+         
             if (originatingAddress.contentEquals(""))
             {
                 originatingAddress = smsMessage.getOriginatingAddress();
@@ -142,9 +146,10 @@ public class Sms2EmailForwarder extends BroadcastReceiver
         try
         {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-            m_emailAddress = preferences.getString("emailAddress", context.getString(R.string.no_address_specified));
-            m_googleAddress = preferences.getString("googleAddress", context.getString(R.string.no_address_specified));
-            m_googlePassword = preferences.getString("googlePassword", context.getString(R.string.no_address_specified));
+            m_emailAddress     = preferences.getString("emailAddress",      context.getString(R.string.no_address_specified));
+            m_googleAddress    = preferences.getString("googleAddress",     context.getString(R.string.no_address_specified));
+            m_googlePassword   = preferences.getString("googlePassword",    context.getString(R.string.no_address_specified));
+            m_forwardingActive = preferences.getBoolean("forwardingActive", true);
         }
         catch (Exception e)
         {
