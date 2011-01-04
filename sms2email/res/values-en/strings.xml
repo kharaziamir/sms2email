@@ -30,7 +30,7 @@
     <string name="help">Help</string>
     <string name="dismiss">Dismiss</string>
 
-    <string name="help_remote_head">Fernsteuerung</string>
+    <string name="help_remote_head">Remote Control</string>
     <string name="help_remote_body">
         Sms2Email can be remote controlled by sending control SMS messages
         to your mobile phone. To enable remote control a remote control
