@@ -27,6 +27,7 @@
     <string name="remote_control">Fernsteuerung</string>
     <string name="remote_password">Passwort</string>
     <string name="remote_password_summary">Passwort für die Fernsteuerung</string>
+    <string name="help">Hilfe</string>
     
     <string name="help_remote_head">Fernsteuerung</string>
     <string name="help_remote_body">

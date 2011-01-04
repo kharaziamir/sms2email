@@ -27,6 +27,7 @@
     <string name="remote_control">Remote Control</string>
     <string name="remote_password">Password</string>
     <string name="remote_password_summary">Remote control password</string>
+    <string name="help">Help</string>
 
     <string name="help_remote_head">Fernsteuerung</string>
     <string name="help_remote_body">

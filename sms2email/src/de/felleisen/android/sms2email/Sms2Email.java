@@ -23,15 +23,19 @@
 package de.felleisen.android.sms2email;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
@@ -141,6 +145,15 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
                 sendEmailThread = new SendEmailThread(m);
                 sendEmailThread.start();
                 return true;
+                
+            case R.id.menu_help: /* help screen */
+            	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            	LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            	View layout = inflater.inflate(R.layout.help, (ViewGroup) findViewById(R.id.layout_main));
+            	builder.setView(layout);
+            	builder.create().show();
+            	return true;
+                
             default:
                 return super.onOptionsItemSelected(item);
         }

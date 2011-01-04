@@ -27,6 +27,7 @@
     <string name="remote_control">Commande à Distance</string>
     <string name="remote_password">Mot de Passe</string>
     <string name="remote_password_summary">Mot de passe pour la command à distance.</string>
+    <string name="help">Aide</string>
 
     <string name="help_remote_head">Commande à Distance</string>
     <string name="help_remote_body">
