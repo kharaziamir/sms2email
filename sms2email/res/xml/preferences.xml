@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<PreferenceCategory android:title="@string/receiver">
-		<EditTextPreference
-        	android:key="emailAddress"
-        	android:summary="@string/email_address_summary"
-        	android:title="@string/email_address"
-        	android:dialogTitle="@string/email_address"
-        	android:defaultValue="@string/no_address_specified"
-        	android:inputType="textEmailAddress" />
-	</PreferenceCategory>
-	<PreferenceCategory android:title="@string/sender">	
-		<EditTextPreference
-        	android:key="googleAddress"
-        	android:summary="@string/google_address_summary"
-        	android:title="@string/google_address"
-        	android:dialogTitle="@string/google_address"
-        	android:defaultValue="@string/no_address_specified"
-        	android:inputType="textEmailAddress" />
-		<EditTextPreference
-        	android:key="googlePassword"
-        	android:summary="@string/google_password_summary"
-        	android:title="@string/google_password"
-        	android:dialogTitle="@string/google_password"
-        	android:defaultValue="@string/no_address_specified"
-        	android:inputType="textPassword" />
-	</PreferenceCategory>
-	<PreferenceCategory android:title="@string/miscellaneous">
-		<CheckBoxPreference
-			android:key="forwardingActive"
+    <PreferenceCategory android:title="@string/receiver">
+        <EditTextPreference
+            android:key="emailAddress"
+            android:summary="@string/email_address_summary"
+            android:title="@string/email_address"
+            android:dialogTitle="@string/email_address"
+            android:defaultValue="@string/no_address_specified"
+            android:inputType="textEmailAddress" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/sender">    
+        <EditTextPreference
+            android:key="googleAddress"
+            android:summary="@string/google_address_summary"
+            android:title="@string/google_address"
+            android:dialogTitle="@string/google_address"
+            android:defaultValue="@string/no_address_specified"
+            android:inputType="textEmailAddress" />
+        <EditTextPreference
+            android:key="googlePassword"
+            android:summary="@string/google_password_summary"
+            android:title="@string/google_password"
+            android:dialogTitle="@string/google_password"
+            android:defaultValue="@string/no_address_specified"
+            android:inputType="textPassword" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/miscellaneous">
+        <CheckBoxPreference
+            android:key="forwardingActive"
             android:title="@string/active_head"
             android:summary="@string/active_summary"
             android:defaultValue="true" />
-	</PreferenceCategory>
+    </PreferenceCategory>
 </PreferenceScreen>
