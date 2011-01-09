@@ -27,6 +27,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -38,6 +39,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * The Sms2Email Activity
@@ -54,6 +56,7 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
     private String  m_googleAddress    = null; /**< sender Google email address */
     private String  m_googlePassword   = null; /**< sender Google password */
     private Boolean m_forwardingActive = true; /**< forwarding active flag */
+    private String  m_remotePassword   = null; /**< remote control password */
     
     /**
      * updates the contents of the main screen
@@ -85,9 +88,30 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
         super.onCreate(savedInstanceState);
 
         /* initialize configured email address and show main view */
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
         getConfig();
         setContentView(R.layout.main);
         updateMainScreen();
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see android.app.Activity#onPause()
+     */
+    protected void onPause()
+    {
+        saveConfig();
+        super.onPause();
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see android.app.Activity#onDestroy()
+     */
+    protected void onDestroy()
+    {
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+        super.onDestroy();
     }
     
     /**
@@ -195,6 +219,7 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
         {
             m_emailAddress = sharedPreferences.getString("emailAddress",
                     getString(R.string.no_address_specified));
+            updateMainScreen();
         }
         else if (key.contentEquals("googleAddress"))
         {
@@ -209,6 +234,7 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
         else if (key.contentEquals("forwardingActive"))
         {
             m_forwardingActive = sharedPreferences.getBoolean("forwardingActive", true);
+            updateMainScreen();
         }
         else if (key.contentEquals("remotePassword"))
         {
@@ -217,6 +243,33 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
         else
         {
             Log.e(TAG, "onSharedPreferenceChanged: unknown key " + key);
+        }
+    }
+    
+    /**
+     * saves all configurations
+     */
+    private void saveConfig()
+    {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Editor            editor      = preferences.edit();
+        getConfig();
+        try
+        {
+            editor.putString ("emailAddress",     m_emailAddress);
+            editor.putString ("googleAddress",    m_googleAddress);
+            editor.putString ("googlePassword",   m_googlePassword);
+            editor.putBoolean("forwardingActive", m_forwardingActive);
+            editor.putString ("remotePassword",   m_remotePassword);
+            if (!editor.commit())
+            {
+                Toast toast = Toast.makeText(this, "Preferences could not be saved!", Toast.LENGTH_LONG);
+                toast.show();
+            }
+        }
+        catch (Exception e)
+        {
+            Log.e(TAG, "saveConfig(): " + e.toString());
         }
     }
     
@@ -232,6 +285,8 @@ public class Sms2Email extends Activity implements OnSharedPreferenceChangeListe
             m_googleAddress    = preferences.getString ("googleAddress",    getString(R.string.no_address_specified));
             m_googlePassword   = preferences.getString ("googlePassword",   getString(R.string.no_address_specified));
             m_forwardingActive = preferences.getBoolean("forwardingActive", true);
+            m_remotePassword   = preferences.getString ("remotePassword",   "");
+
         }
         catch (Exception e)
         {
